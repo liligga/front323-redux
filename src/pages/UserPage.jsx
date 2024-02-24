@@ -1,14 +1,21 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const UserPage = () => {
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
   const [userPhone, setUserPhone] = useState('')
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    dispatch({ type: 'CHANGE_NAME', payload: userName })
+    dispatch({ type: 'CHANGE_EMAIL', payload: userEmail })
+    dispatch({ type: 'CHANGE_PHONE', payload: userPhone })
+    // dispatch({ type: 'CHANGE_USER_DATA', payload: { name: userName, email: userEmail, phone: userPhone } })
     //
     setUserName('')
     setUserEmail('')
@@ -43,9 +50,9 @@ const UserPage = () => {
         <button type="submit">Сохранить</button>
       </form>
       <div className='w-full col-span-full md:max-lg:max-w-xs lg:col-start-3 lg:col-end-6 flex flex-col gap-3 items-stretch text-md text-left [&>span]:truncate [&>span]:border-2 [&>span]:border-rose-400 [&>span]:border-dashed [&>*]:p-1'>
-        <span>Имя: {userName}</span>
-        <span>Email: {userEmail}</span>
-        <span>Телефон: {userPhone}</span>
+        <span>Имя: {user.name}</span>
+        <span>Email: {user.email}</span>
+        <span>Телефон: {user.phone}</span>
       </div>
     </div>
   )

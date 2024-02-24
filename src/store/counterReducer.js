@@ -19,3 +19,8 @@ export const counterReducer = (state = defaultState, action) => {
       return state;
   }
 };
+
+// action creator - для создания действия
+export const incrementCounter = () => ({ type: 'INCREMENT_COUNTER' })
+
+export const decrementCounter = () => ({ type: 'DECREMENT_COUNTER' })
