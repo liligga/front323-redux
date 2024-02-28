@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { DeleteIcon } from "./UI/icons";
 
@@ -12,9 +12,11 @@ const todoItems = [
 const TodoTable = () => {
   // const [items, setItems] = useState(todoItems);
   const items = useSelector((state) => state.todos.items);
+  const dispatch = useDispatch();
 
-  const handleDeleteClick = (id) => {
-    console.log(id);
+  const handleDeleteClick = (todo) => {
+    console.log(todo);
+    dispatch({ type: "DELETE_TODO", payload: todo });
   };
 
   const handleCheckClick = (id) => {
