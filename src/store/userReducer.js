@@ -18,7 +18,7 @@ const defaultState = {
     // }
 // }
 export const userReducer = (state = defaultState, action) => {
-    console.log(action)
+    // console.log(action)
     switch (action.type) {
         case 'CHANGE_NAME':
             return {...state, name: action.payload }
